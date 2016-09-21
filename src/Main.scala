@@ -3,11 +3,17 @@ package parser
 
 object Main 
 {
-	def main(args: Array[String]) 
+	def main(args: Array[String]) =
 	{
-		for (c <- Lexer.tokenize("1+2-(4*5)")) 
+		var line : String = "";
+		println("Input:");
+		line = Console.readLine();
+		while (line != "quit" && line != "exit") 
 		{
-			println(c);
+			var tape : Tape = new Tape(Lexer.tokenize(line));
+			println((new Expression(tape).calculate()));
+			println("Input:");
+			line = Console.readLine();
 		}
 	}
 }
